@@ -56,10 +56,13 @@ public class ActivityTracker {
         }
     }
 
+    // EFFECTS: prints "Coming Soon!!!"
     private void goals() {
-
+        System.out.println("Coming Soon!!!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: gets selected activity so the user can view its details or edits details
     private void getActivity() {
         if (activities.getShortestTime() == null) {
             System.out.println("List is empty. Try adding activities first!");
@@ -67,7 +70,8 @@ public class ActivityTracker {
             List<String> titles = activities.getListOfTitles();
             int number = 1;
             for (String title : titles) {
-                System.out.println(number + title);
+                System.out.println(number + ")  " + title);
+                number++;
             }
             System.out.println("\n Choose which activity you wish to access to edit or view details! (By number)");
             int choice = input.nextInt();
@@ -79,6 +83,8 @@ public class ActivityTracker {
         }
     }
 
+    // MODIFIES: selected activity
+    // EFFECTS: allows user to edit selected activity
     private void editActivity(int choice) {
         Activity chosenActivity = activities.get(choice - 1);
         displayActivityDetails(chosenActivity);
@@ -90,12 +96,12 @@ public class ActivityTracker {
             System.out.println("\tT - time");
             String editChoice = input.next();
             editChoice.toLowerCase();
-            if (editChoice.equals("D")) {
-                System.out.println("New distance: ");
+            if (editChoice.equals("d")) {
+                System.out.println("New distance (km): ");
                 float newDistance = input.nextFloat();
                 chosenActivity.setDistance(newDistance);
-            } else if (editChoice.equals("T")) {
-                System.out.println("New time: ");
+            } else if (editChoice.equals("t")) {
+                System.out.println("New time (mins): ");
                 float newTime = input.nextFloat();
                 chosenActivity.setTime(newTime);
             } else {
@@ -104,16 +110,17 @@ public class ActivityTracker {
         }
     }
 
+    // EFFECTS: displays chosen activity's details
     private void displayActivityDetails(Activity chosenActivity) {
         System.out.println("\n" + chosenActivity.getTitle());
-        System.out.println("\tDistance: " + chosenActivity.getDistance());
-        System.out.println("\tTime: " + chosenActivity.getTime());
-        System.out.println("\tPace: " + chosenActivity.getPace());
-        System.out.println("\tAverage Speed: " + chosenActivity.getAverageSpeed());
+        System.out.println("\tDistance: " + chosenActivity.getDistance() + " km");
+        System.out.println("\tTime: " + chosenActivity.getTime() + " mins");
+        System.out.println("\tPace: " + chosenActivity.getPace() + " mins/km");
+        System.out.println("\tAverage Speed: " + (chosenActivity.getAverageSpeed() * 60) + " km/h");
         System.out.println("\nDo you want to edit the details of this activity? (type yes)");
     }
 
-
+    // EFFECTS: searches list for activity with user's chosen filter
     private void searchList() {
         if (activities.getShortestTime() == null) {
             System.out.println("List is empty. Try adding activities first!");
@@ -122,14 +129,15 @@ public class ActivityTracker {
             String search = input.next();
             search.toLowerCase();
             if (search.equals("d")) {
-                editDistance();
+                getActivityByDistance();
             } else if (search.equals("t")) {
-                editTime();
+                getActivityByTime();
             }
         }
     }
 
-    private void editTime() {
+    // EFFECTS: Returns activity with highest or lowest time based on user input
+    private void getActivityByTime() {
         System.out.println("(H)ighest distance or (L)owest time? ");
         String type = input.next();
         type.toLowerCase();
@@ -142,7 +150,8 @@ public class ActivityTracker {
         }
     }
 
-    private void editDistance() {
+    // EFFECTS: Returns activity with highest or lowest distance based on user input
+    private void getActivityByDistance() {
         System.out.println("(H)ighest distance or (L)owest distance? ");
         String type = input.next();
         type.toLowerCase();
@@ -157,13 +166,15 @@ public class ActivityTracker {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds activity to list based on given distance, time and title
     private void addActivity() {
-        System.out.println("Enter distance for activity:");
+        System.out.println("Enter distance for activity (km):");
         float distance = input.nextFloat();
         if (distance < 0) {
             System.out.println("Distance must be greater than 0!");
         } else {
-            System.out.println("Enter time for activity:");
+            System.out.println("Enter time for activity (mins):");
             float time = input.nextFloat();
             if (time < 0) {
                 System.out.println("Time must be greater than 0!");
