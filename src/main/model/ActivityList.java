@@ -69,7 +69,7 @@ public class ActivityList {
 
     // EFFECTS: returns shortest time of all activities in list, if multiple found then gives first found in list
     //          if the list is empty return null
-    public Activity getShortesttime() {
+    public Activity getShortestTime() {
 
         if (activities.isEmpty()) {
             return null;
@@ -95,5 +95,13 @@ public class ActivityList {
 
     public int size() {
         return activities.size();
+    }
+
+    public List<String> getListOfTitles() {
+        List<String> titles = new ArrayList<>();
+        for (Activity activity : activities) {
+            titles.add(activity.getTitle());
+        }
+        return titles;
     }
 }

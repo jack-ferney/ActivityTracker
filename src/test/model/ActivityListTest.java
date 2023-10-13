@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Time;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -72,7 +72,7 @@ public class ActivityListTest {
     @Test
     void testGetShortestTimeNothingInList() {
         ActivityList testList = new ActivityList();
-        assertNull(testList.getShortesttime());
+        assertNull(testList.getShortestTime());
     }
 
     @Test
@@ -92,6 +92,14 @@ public class ActivityListTest {
 
     @Test
     void testGetShortestTimeMultiple() {
-        assertEquals(testRActivity1, testActivityList.getShortesttime());
+        assertEquals(testRActivity1, testActivityList.getShortestTime());
+    }
+
+    @Test
+    void testGetListOfTitles() {
+        List<String> titles = testActivityList.getListOfTitles();
+        assertEquals("Evening ride", titles.get(0));
+        assertEquals(8, titles.size());
+        assertEquals("Same distance run", titles.get(7));
     }
 }
