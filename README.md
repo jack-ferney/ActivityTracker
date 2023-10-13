@@ -12,7 +12,6 @@ use to active and goal oriented athletes like myself or anyone who wishes to tra
 
 - I want to be able to add an activity to my list of activities that specifies the type of activity, how far it was, how much time it took
 - I want to be able to edit an activity after it has been created
-- I want to be able to set a distance goal (ex: run 50km) that gets marked as completed if I fulfill the requirement
-- I want to be able to set a time goal (ex: run for more than 30 mins) that gets marked as completed if I fulfill the requirement
-- I want to be able to switch between metrics (ex: km to miles and kph to mph)
-- I want to be able to, when viewing my activities, change the order (ex: longest distance to shortest, shortest distance to longest, most recent, longest amount of time, least amount of time, running activities first, etc.)
+- I want to be able to set a distance goal (ex: run 42.1km in one activity) that gets marked as completed if I fulfill the requirement
+- I want to be able to set a time goal (ex: run for more than 30 mins in one activity) that gets marked as completed if I fulfill the requirement
+- I want to be able to, search my list of activities and find the longest distance/time or shortest distance/time

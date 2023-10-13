@@ -6,40 +6,94 @@ import java.util.List;
 public class ActivityList {
 
     private List<Activity> activities;
-    private List<Activity> bikingActivities;
-    private List<Activity> runningActivities;
+    private Comparator distComparator = new DistanceComparator();
+    private Comparator timeComparator = new TimeComparator();
 
     public ActivityList() {
         this.activities = new ArrayList<>();
-        this.bikingActivities = new ArrayList<>();
-        this.runningActivities = new ArrayList<>();
     }
 
-    public void sortByDistance() {
-        // stub (probably an easy way to do these ones)
+    // EFFECTS: returns longest distance of all activities in list, if multiple found then gives first found in list
+    //          if the list is empty return null
+    public Activity getLongestDistance() {
+
+        if (activities.isEmpty()) {
+            return null;
+        } else {
+            Activity longestDistanceSoFar = activities.get(0);
+
+            for (Activity activity : activities) {
+                if (distComparator.compare(activity, longestDistanceSoFar) > 0) {
+                    longestDistanceSoFar = activity;
+                }
+            }
+            return longestDistanceSoFar;
+        }
     }
 
-    public void sortByTime() {
-        // stub (probably an easy way to do these ones)
+    // EFFECTS: returns shortest distance of all activities in list, if multiple found then gives first found in list
+    //          if the list is empty return null
+    public Activity getShortestDistance() {
+
+        if (activities.isEmpty()) {
+            return null;
+        } else {
+            Activity shortestDistSoFar = activities.get(0);
+
+            for (Activity activity : activities) {
+                if (distComparator.compare(shortestDistSoFar, activity) > 0) {
+                    shortestDistSoFar = activity;
+                }
+            }
+            return shortestDistSoFar;
+        }
     }
 
-    public void sortRunFirstAndDistance() {
-        // stub
-        // (maybe purge the all activities list and then order the two others and add them to the all activities list)
+    // EFFECTS: returns longest time of all activities in list, if multiple found then gives first found in list
+    //          if the list is empty return null
+    public Activity getLongestTime() {
+
+        if (activities.isEmpty()) {
+            return null;
+        } else {
+            Activity longestTimeSoFar = activities.get(0);
+
+            for (Activity activity : activities) {
+                if (timeComparator.compare(activity, longestTimeSoFar) > 0) {
+                    longestTimeSoFar = activity;
+                }
+            }
+            return longestTimeSoFar;
+        }
     }
 
-    public void sortRunFirstAndTime() {
-        // stub
-        // (maybe purge the all activities list and then order the two others and add them to the all activities list)
+    // EFFECTS: returns shortest time of all activities in list, if multiple found then gives first found in list
+    //          if the list is empty return null
+    public Activity getShortesttime() {
+
+        if (activities.isEmpty()) {
+            return null;
+        } else {
+            Activity shortestTimeSoFar = activities.get(0);
+
+            for (Activity activity : activities) {
+                if (timeComparator.compare(shortestTimeSoFar, activity) > 0) {
+                    shortestTimeSoFar = activity;
+                }
+            }
+            return shortestTimeSoFar;
+        }
     }
 
-    public void sortBikeFirstAndDistance() {
-        // stub
-        // (maybe purge the all activities list and then order the two others and add them to the all activities list)
+    public void addActivity(Activity activity) {
+        activities.add(activity);
     }
 
-    public void sortBikeFirstAndTime() {
-        // stub
-        // (maybe purge the all activities list and then order the two others and add them to the all activities list)
+    public Activity get(int i) {
+        return activities.get(i);
+    }
+
+    public int size() {
+        return activities.size();
     }
 }

@@ -10,7 +10,11 @@ public class BikingActivityTest {
 
     @BeforeEach
     void beforeAll() {
-        testActivityB = new BikingActivity(50F, 120F, "Morning ride");
+        testActivityB = new BikingActivity(45F, 100F, "Morning ride");
+        assertEquals(45, testActivityB.getDistance());
+        assertEquals(100, testActivityB.getTime());
+        testActivityB.setDistance(50F);
+        testActivityB.setTime(120F);
         assertEquals(50, testActivityB.getDistance());
         assertEquals(120, testActivityB.getTime());
         assertEquals( testActivityB.getTime() / testActivityB.getDistance(), testActivityB.getPace());
@@ -21,7 +25,7 @@ public class BikingActivityTest {
     @Test
     void testDetermineCaloriesBurned() {
         float weight = 75;
-        assertEquals(12 * weight * 120 / 60, testActivityB.determineCaloriesBurned(weight));
+        assertEquals(12 * weight * testActivityB.getTime() / 60, testActivityB.determineCaloriesBurned(weight));
     }
 
 }

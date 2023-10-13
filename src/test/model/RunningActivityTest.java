@@ -13,6 +13,8 @@ public class RunningActivityTest {
         testActivityR = new RunningActivity(8F, 35F, "Workout Run");
         assertEquals(8, testActivityR.getDistance());
         assertEquals(35, testActivityR.getTime());
+        testActivityR.setTime(10F);
+        testActivityR.setDistance(40F);
         assertEquals( testActivityR.getTime() / testActivityR.getDistance(), testActivityR.getPace());
         assertEquals(testActivityR.getDistance() / testActivityR.getTime(), testActivityR.getAverageSpeed());
         assertEquals("Workout Run", testActivityR.getTitle());
@@ -21,7 +23,7 @@ public class RunningActivityTest {
     @Test
     void testDetermineCaloriesBurned() {
         float weight = 75;
-        assertEquals(10 * weight * 35 / 60, testActivityR.determineCaloriesBurned(weight));
+        assertEquals(10 * weight * testActivityR.getTime() / 60, testActivityR.determineCaloriesBurned(weight));
     }
 
 }

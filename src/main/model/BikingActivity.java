@@ -19,8 +19,6 @@ public class BikingActivity implements Activity {
         this.title = title;
     }
 
-    // REQUIRES: weight > 0
-    // EFFECTS: Determines calories burned based on provided weight of user, distance, and time of activity
     @Override
     public float determineCaloriesBurned(float weight) {
         return (12 * weight * this.getTime() / 60);
@@ -49,11 +47,15 @@ public class BikingActivity implements Activity {
     @Override
     public void setDistance(float distance) {
         this.distance = distance;
+        this.pace = this.time / distance;
+        this.averageSpeed = distance / this.time;
     }
 
     @Override
     public void setTime(float time) {
         this.time = time;
+        this.pace = time / this.distance;
+        this.averageSpeed = this.distance / time;
     }
 
     @Override
