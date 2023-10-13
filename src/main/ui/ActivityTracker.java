@@ -81,12 +81,7 @@ public class ActivityTracker {
 
     private void editActivity(int choice) {
         Activity chosenActivity = activities.get(choice - 1);
-        System.out.println("\n" + chosenActivity.getTitle());
-        System.out.println("\tDistance: " + chosenActivity.getDistance());
-        System.out.println("\tTime: " + chosenActivity.getTime());
-        System.out.println("\tPace: " + chosenActivity.getPace());
-        System.out.println("\tAverage Speed: " + chosenActivity.getAverageSpeed());
-        System.out.println("\nDo you want to edit the details of this activity? (type yes)");
+        displayActivityDetails(chosenActivity);
         String yesNoChoice = input.next();
         yesNoChoice.toLowerCase();
         if (yesNoChoice.equals("yes")) {
@@ -109,6 +104,15 @@ public class ActivityTracker {
         }
     }
 
+    private void displayActivityDetails(Activity chosenActivity) {
+        System.out.println("\n" + chosenActivity.getTitle());
+        System.out.println("\tDistance: " + chosenActivity.getDistance());
+        System.out.println("\tTime: " + chosenActivity.getTime());
+        System.out.println("\tPace: " + chosenActivity.getPace());
+        System.out.println("\tAverage Speed: " + chosenActivity.getAverageSpeed());
+        System.out.println("\nDo you want to edit the details of this activity? (type yes)");
+    }
+
 
     private void searchList() {
         if (activities.getShortestTime() == null) {
@@ -118,30 +122,38 @@ public class ActivityTracker {
             String search = input.next();
             search.toLowerCase();
             if (search.equals("d")) {
-                System.out.println("(H)ighest distance or (L)owest distance? ");
-                String type = input.next();
-                type.toLowerCase();
-                if (type.equals("h")) {
-                    System.out.println("Activity title with longest distance: "
-                            + activities.getLongestDistance().getTitle());
-                } else if (type.equals("l")) {
-                    System.out.println("Activity title with shortest distance: "
-                            + activities.getShortestDistance().getTitle());
-                } else {
-                    System.out.println("Invalid input");
-                }
+                editDistance();
             } else if (search.equals("t")) {
-                System.out.println("(H)ighest distance or (L)owest time? ");
-                String type = input.next();
-                type.toLowerCase();
-                if (type.equals("h")) {
-                    System.out.println("Activity title with longest time: " + activities.getLongestTime().getTitle());
-                } else if (type.equals("l")) {
-                    System.out.println("Activity title with shortest time: " + activities.getShortestTime().getTitle());
-                } else {
-                    System.out.println("Invalid input");
-                }
+                editTime();
             }
+        }
+    }
+
+    private void editTime() {
+        System.out.println("(H)ighest distance or (L)owest time? ");
+        String type = input.next();
+        type.toLowerCase();
+        if (type.equals("h")) {
+            System.out.println("Activity title with longest time: " + activities.getLongestTime().getTitle());
+        } else if (type.equals("l")) {
+            System.out.println("Activity title with shortest time: " + activities.getShortestTime().getTitle());
+        } else {
+            System.out.println("Invalid input");
+        }
+    }
+
+    private void editDistance() {
+        System.out.println("(H)ighest distance or (L)owest distance? ");
+        String type = input.next();
+        type.toLowerCase();
+        if (type.equals("h")) {
+            System.out.println("Activity title with longest distance: "
+                    + activities.getLongestDistance().getTitle());
+        } else if (type.equals("l")) {
+            System.out.println("Activity title with shortest distance: "
+                    + activities.getShortestDistance().getTitle());
+        } else {
+            System.out.println("Invalid input");
         }
     }
 
@@ -160,10 +172,9 @@ public class ActivityTracker {
                 String title = input.next();
                 System.out.println("Enter type of activity (b or r)!");
                 String type = input.next();
-                type.toLowerCase();
-                if (type.equals("b")) {
+                if (type.equals("b") || type.equals("B")) {
                     activities.addActivity(new BikingActivity(distance, time, title));
-                } else if (type.equals("r")) {
+                } else if (type.equals("r") || type.equals("R")) {
                     activities.addActivity(new RunningActivity(distance, time, title));
                 } else {
                     System.out.println("Invalid type of activity!");
