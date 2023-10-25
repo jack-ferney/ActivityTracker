@@ -25,6 +25,7 @@ public class BikingTimeGoalTest {
     void testEditGoal() {
         testBikeTGoal.editGoal(45);
         assertEquals(45, testBikeTGoal.getGoalValue());
+        assertFalse(testBikeTGoal.getGoalStatus());
     }
 
 }

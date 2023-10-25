@@ -25,6 +25,7 @@ public class RunningTimeGoalTest {
     void testEditGoal() {
         testRunningTGoal.editGoal(45);
         assertEquals(45, testRunningTGoal.getGoalValue());
+        assertFalse(testRunningTGoal.getGoalStatus());
     }
 
 }

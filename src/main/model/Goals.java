@@ -11,6 +11,6 @@ public interface Goals {
 
     // REQUIRES: newGoal > 0
     // MODIFIES: this
-    // EFFECTS: changes the requirement of this goal to newGoal value
+    // EFFECTS: changes the requirement of this goal to newGoal value and sets completed to false
     void editGoal(float newGoal);
 }

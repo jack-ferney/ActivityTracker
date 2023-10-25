@@ -25,6 +25,7 @@ public class RunningDistanceGoalTest {
     void testEditGoal() {
         testRunningDGoal.editGoal(80);
         assertEquals(80, testRunningDGoal.getGoalValue());
+        assertFalse(testRunningDGoal.getGoalStatus());
     }
 
 }

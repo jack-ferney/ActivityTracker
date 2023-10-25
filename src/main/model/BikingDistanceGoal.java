@@ -30,5 +30,6 @@ public class BikingDistanceGoal implements Goals {
     @Override
     public void editGoal(float newGoal) {
         this.distance = newGoal;
+        this.completed = false;
     }
 }

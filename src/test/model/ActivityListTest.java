@@ -18,19 +18,21 @@ public class ActivityListTest {
     private Activity testBActivity2;
     private Activity testBActivity3;
     private Activity testBActivity4;
+    private Activity testBActivity5;
     private TimeComparator timeComparator;
     private DistanceComparator distComparator;
 
     @BeforeEach
     void runBefore() {
-        testRActivity1 = new RunningActivity(6, 30, "Evening run");
-        testRActivity2 = new RunningActivity(5, 35, "Slow run");
+        testRActivity1 = new RunningActivity(6, 35, "Evening run");
+        testRActivity2 = new RunningActivity(5, 30, "Slow run");
         testRActivity3 = new RunningActivity(4, 30, "Shorter run");
         testRActivity4 = new RunningActivity(4, 45, "Same distance run");
         testBActivity1 = new BikingActivity(6, 45, "Evening ride");
         testBActivity2 = new BikingActivity(20, 50, "Slow ride");
         testBActivity3 = new BikingActivity(30, 50, "Fast ride");
         testBActivity4 = new BikingActivity(30, 40, "Same distance ride");
+        testBActivity5 = new BikingActivity(3, 20, "Shortest Ride");
         distComparator = new DistanceComparator();
         timeComparator = new TimeComparator();
         testActivityList = new ActivityList();
@@ -53,46 +55,158 @@ public class ActivityListTest {
     @Test
     void testGetLongestDistNothingInList() {
         ActivityList testList = new ActivityList();
-        assertNull(testList.getLongestDistance());
+        assertNull(testList.getLongestDistance(ActivityList.ActivityType.BOTH));
 
     }
 
     @Test
     void testGetLongestTimeNothingInList() {
         ActivityList testList = new ActivityList();
-        assertNull(testList.getLongestTime());
+        assertNull(testList.getLongestTime(ActivityList.ActivityType.BOTH));
     }
 
     @Test
     void testGetShortestDistNothingInList() {
         ActivityList testList = new ActivityList();
-        assertNull(testList.getShortestDistance());
+        assertNull(testList.getShortestDistance(ActivityList.ActivityType.BOTH));
     }
 
     @Test
     void testGetShortestTimeNothingInList() {
         ActivityList testList = new ActivityList();
-        assertNull(testList.getShortestTime());
+        assertNull(testList.getShortestTime(ActivityList.ActivityType.BOTH));
     }
 
     @Test
     void testGetLongestDistMultiple() {
-        assertEquals(testBActivity3, testActivityList.getLongestDistance());
+        assertEquals(testBActivity3, testActivityList.getLongestDistance(ActivityList.ActivityType.BOTH));
+    }
+
+    @Test
+    void testGetLongestDistBikingActivityNothingInList() {
+        ActivityList testList = new ActivityList();
+        assertNull(testList.getLongestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetLongestDistBikingActivityOnlyRunningInList() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testRActivity1);
+        testList.addActivity(testRActivity2);
+        assertNull(testList.getLongestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetLongestDistBikingActivityRunningActivityLonger() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testRActivity2);
+        testList.addActivity(testRActivity1);
+        testList.addActivity(testBActivity5);
+        assertEquals(testBActivity5, testList.getLongestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetLongestDistBikingActivityLongList() {
+        assertEquals(testBActivity3, testActivityList.getLongestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetShortestDistBikingActivityNothingInList() {
+        ActivityList testList = new ActivityList();
+        assertNull(testList.getShortestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetShortestDistBikingActivityOnlyRunningInList() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testRActivity1);
+        testList.addActivity(testRActivity2);
+        assertNull(testList.getShortestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetShortestDistBikingActivityRunningActivityShorter() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testRActivity3);
+        testList.addActivity(testRActivity1);
+        testList.addActivity(testBActivity5);
+        assertEquals(testBActivity5, testList.getShortestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetShortestDistBikingActivityLongList() {
+        assertEquals(testBActivity1, testActivityList.getShortestDistance(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetLongestDistRunningActivityNothingInList() {
+        ActivityList testList = new ActivityList();
+        assertNull(testList.getLongestDistance(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetLongestDistRunningActivityOnlyRunningInList() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testBActivity5);
+        testList.addActivity(testBActivity2);
+        assertNull(testList.getLongestDistance(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetLongestDistRunningActivityBikingActivityLonger() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testRActivity2);
+        testList.addActivity(testRActivity1);
+        testList.addActivity(testBActivity2);
+        assertEquals(testRActivity1, testList.getLongestDistance(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetLongestDistRunningActivityLongList() {
+        assertEquals(testRActivity1, testActivityList.getLongestDistance(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetShortestDistRunningActivityNothingInList() {
+        ActivityList testList = new ActivityList();
+        assertNull(testList.getShortestDistance(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetShortestDistRunningActivityOnlyBikingInList() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testBActivity5);
+        testList.addActivity(testBActivity2);
+        assertNull(testList.getShortestDistance(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetShortestDistRunningActivityBikingActivityShorter() {
+        ActivityList testList = new ActivityList();
+        testList.addActivity(testRActivity2);
+        testList.addActivity(testRActivity1);
+        testList.addActivity(testBActivity5);
+        assertEquals(testRActivity2, testList.getShortestDistance(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetShortestDistRunningActivityLongList() {
+        assertEquals(testRActivity3, testActivityList.getShortestDistance(ActivityList.ActivityType.RUNNING));
     }
 
     @Test
     void testGetLongestTimeMultiple() {
-        assertEquals(testBActivity2, testActivityList.getLongestTime());
+        assertEquals(testBActivity2, testActivityList.getLongestTime(ActivityList.ActivityType.BOTH));
     }
 
     @Test
     void testGetShortestDistMultiple() {
-        assertEquals(testRActivity3, testActivityList.getShortestDistance());
+        assertEquals(testRActivity3, testActivityList.getShortestDistance(ActivityList.ActivityType.BOTH));
     }
 
     @Test
     void testGetShortestTimeMultiple() {
-        assertEquals(testRActivity1, testActivityList.getShortestTime());
+        assertEquals(testRActivity2, testActivityList.getShortestTime(ActivityList.ActivityType.BOTH));
     }
 
     @Test

@@ -5,98 +5,168 @@ import java.util.List;
 
 public class ActivityList {
 
+    public enum ActivityType { RUNNING, BIKING, BOTH }
+
     private List<Activity> activities;
     private Comparator distComparator = new DistanceComparator();
     private Comparator timeComparator = new TimeComparator();
 
+    // EFFECTS: constructs an empty list of activities
     public ActivityList() {
         this.activities = new ArrayList<>();
     }
 
-    // EFFECTS: returns longest distance of all activities in list, if multiple found then gives first found in list
-    //          if the list is empty return null
-    public Activity getLongestDistance() {
-
-        if (activities.isEmpty()) {
+    // REQUIRES: an activity type enumeration value
+    // EFFECTS: returns the activity within the activity type specified with the longest distance
+    public Activity getLongestDistance(ActivityType activityType) {
+        List<Activity> consideredActivities = new ArrayList<>();
+        Activity longestDistance;
+        if (activityType == ActivityType.BIKING) {
+            getBikingActivities(consideredActivities);
+        } else if (activityType == ActivityType.RUNNING) {
+            getRunningActivities(consideredActivities);
+        } else if (activityType == ActivityType.BOTH) {
+            consideredActivities = activities;
+        }
+        if (consideredActivities.isEmpty()) {
             return null;
         } else {
-            Activity longestDistanceSoFar = activities.get(0);
-
-            for (Activity activity : activities) {
-                if (distComparator.compare(activity, longestDistanceSoFar) > 0) {
-                    longestDistanceSoFar = activity;
+            longestDistance = consideredActivities.get(0);
+            for (Activity activity : consideredActivities) {
+                if (distComparator.compare(activity, longestDistance) > 0) {
+                    longestDistance = activity;
                 }
             }
-            return longestDistanceSoFar;
+            return longestDistance;
         }
     }
 
-    // EFFECTS: returns shortest distance of all activities in list, if multiple found then gives first found in list
-    //          if the list is empty return null
-    public Activity getShortestDistance() {
-
-        if (activities.isEmpty()) {
+    // REQUIRES: an activity type enumeration value
+    // EFFECTS: returns the activity within the activity type specified with the shortest distance
+    public Activity getShortestDistance(ActivityType activityType) {
+        List<Activity> consideredActivities = new ArrayList<>();
+        Activity shortestDistance;
+        if (activityType == ActivityType.BIKING) {
+            getBikingActivities(consideredActivities);
+        } else if (activityType == ActivityType.RUNNING) {
+            getRunningActivities(consideredActivities);
+        } else if (activityType == ActivityType.BOTH) {
+            consideredActivities = activities;
+        }
+        if (consideredActivities.isEmpty()) {
             return null;
         } else {
-            Activity shortestDistSoFar = activities.get(0);
-
-            for (Activity activity : activities) {
-                if (distComparator.compare(shortestDistSoFar, activity) > 0) {
-                    shortestDistSoFar = activity;
+            shortestDistance = consideredActivities.get(0);
+            for (Activity activity : consideredActivities) {
+                if (distComparator.compare(shortestDistance, activity) > 0) {
+                    shortestDistance = activity;
                 }
             }
-            return shortestDistSoFar;
+            return shortestDistance;
         }
     }
 
-    // EFFECTS: returns longest time of all activities in list, if multiple found then gives first found in list
-    //          if the list is empty return null
-    public Activity getLongestTime() {
-
-        if (activities.isEmpty()) {
+    // REQUIRES: an activity type enumeration value
+    // EFFECTS: returns the activity within the activity type specified with the longest time
+    public Activity getLongestTime(ActivityType activityType) {
+        List<Activity> consideredActivities = new ArrayList<>();
+        Activity longestTime;
+        if (activityType == ActivityType.BIKING) {
+            getBikingActivities(consideredActivities);
+        } else if (activityType == ActivityType.RUNNING) {
+            getRunningActivities(consideredActivities);
+        } else if (activityType == ActivityType.BOTH) {
+            consideredActivities = activities;
+        }
+        if (consideredActivities.isEmpty()) {
             return null;
         } else {
-            Activity longestTimeSoFar = activities.get(0);
-
-            for (Activity activity : activities) {
-                if (timeComparator.compare(activity, longestTimeSoFar) > 0) {
-                    longestTimeSoFar = activity;
+            longestTime = consideredActivities.get(0);
+            for (Activity activity : consideredActivities) {
+                if (timeComparator.compare(activity, longestTime) > 0) {
+                    longestTime = activity;
                 }
             }
-            return longestTimeSoFar;
+            return longestTime;
         }
     }
 
-    // EFFECTS: returns shortest time of all activities in list, if multiple found then gives first found in list
-    //          if the list is empty return null
-    public Activity getShortestTime() {
-
-        if (activities.isEmpty()) {
+    // REQUIRES: an activity type enumeration value
+    // EFFECTS: returns the activity within the activity type specified with the shortest time
+    public Activity getShortestTime(ActivityType activityType) {
+        List<Activity> consideredActivities = new ArrayList<>();
+        Activity shortestTime;
+        if (activityType == ActivityType.BIKING) {
+            getBikingActivities(consideredActivities);
+        } else if (activityType == ActivityType.RUNNING) {
+            getRunningActivities(consideredActivities);
+        } else {
+            consideredActivities = activities;
+        }
+        if (consideredActivities.isEmpty()) {
             return null;
         } else {
-            Activity shortestTimeSoFar = activities.get(0);
-
-            for (Activity activity : activities) {
-                if (timeComparator.compare(shortestTimeSoFar, activity) > 0) {
-                    shortestTimeSoFar = activity;
+            shortestTime = consideredActivities.get(0);
+            for (Activity activity : consideredActivities) {
+                if (timeComparator.compare(shortestTime, activity) > 0) {
+                    shortestTime = activity;
                 }
             }
-            return shortestTimeSoFar;
+            return shortestTime;
         }
     }
 
+    // REQUIRES: a list of activities (empty or not)
+    // EFFECTS: returns a list of only the running activities in the given list
+    private void getRunningActivities(List<Activity> consideredActivities) {
+        if (activities.isEmpty()) {
+            consideredActivities = null;
+        } else {
+            for (Activity activity : activities) {
+                if (activity.getClass() == RunningActivity.class) {
+                    consideredActivities.add(activity);
+                }
+            }
+        }
+    }
+
+    // REQUIRES: a list of activities (empty or not)
+    // EFFECTS: returns a list of only the biking activities in the given list
+    private void getBikingActivities(List<Activity> consideredActivities) {
+        if (activities.isEmpty()) {
+            consideredActivities = null;
+        } else {
+            for (Activity activity : activities) {
+                if (activity.getClass() == BikingActivity.class) {
+                    consideredActivities.add(activity);
+                }
+            }
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds the given activity to the end of this list
     public void addActivity(Activity activity) {
         activities.add(activity);
     }
 
+    // EFFECTS: returns the activity in this list with the given index
     public Activity get(int i) {
         return activities.get(i);
     }
 
+    // EFFECTS: returns the length of the given list
     public int size() {
         return activities.size();
     }
 
+    // REQUIRES: list to contain chosenActivity
+    // EFFECTS: removes the given activity from this list
+    public void removeActivity(Activity chosenActivity) {
+        activities.remove(chosenActivity);
+    }
+
+    // EFFECTS: returns a list of the titles of activities in this list
     public List<String> getListOfTitles() {
         List<String> titles = new ArrayList<>();
         for (Activity activity : activities) {

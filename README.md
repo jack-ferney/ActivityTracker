@@ -10,8 +10,14 @@ use to active and goal oriented athletes like myself or anyone who wishes to tra
 
 ## User Stories:
 
-- I want to be able to add an activity to my list of activities that specifies the type of activity, how far it was, how much time it took
+- I want to be able to add an activity to my list of activities that specifies the type of activity
+- I want to be able to specify distance for an activity
+- I want to be able to specify time for an activity
+- I want to be able to de details about the activity (pace and average speed)
 - I want to be able to edit an activity after it has been created
 - I want to be able to set a distance goal (ex: run 42.1km in one activity) that I can mark as completed if I fulfill the requirement
 - I want to be able to set a time goal (ex: run for more than 30 mins in one activity) that I can can mark as completed if I fulfill the requirement
 - I want to be able to, search my list of activities and find the longest distance/time or shortest distance/time
+- I want to be able to, search my list of activities and find the longest distance/time or shortest distance/time considering only biking activities
+- I want to be able to, search my list of activities and find the longest distance/time or shortest distance/time considering only running activities
+- I want to be able to delete an activity from my list
