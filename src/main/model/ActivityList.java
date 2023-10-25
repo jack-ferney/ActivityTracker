@@ -25,7 +25,7 @@ public class ActivityList {
             getBikingActivities(consideredActivities);
         } else if (activityType == ActivityType.RUNNING) {
             getRunningActivities(consideredActivities);
-        } else if (activityType == ActivityType.BOTH) {
+        } else {
             consideredActivities = activities;
         }
         if (consideredActivities.isEmpty()) {
@@ -50,7 +50,7 @@ public class ActivityList {
             getBikingActivities(consideredActivities);
         } else if (activityType == ActivityType.RUNNING) {
             getRunningActivities(consideredActivities);
-        } else if (activityType == ActivityType.BOTH) {
+        } else {
             consideredActivities = activities;
         }
         if (consideredActivities.isEmpty()) {
@@ -75,7 +75,7 @@ public class ActivityList {
             getBikingActivities(consideredActivities);
         } else if (activityType == ActivityType.RUNNING) {
             getRunningActivities(consideredActivities);
-        } else if (activityType == ActivityType.BOTH) {
+        } else {
             consideredActivities = activities;
         }
         if (consideredActivities.isEmpty()) {
@@ -120,7 +120,7 @@ public class ActivityList {
     // EFFECTS: returns a list of only the running activities in the given list
     private void getRunningActivities(List<Activity> consideredActivities) {
         if (activities.isEmpty()) {
-            consideredActivities = null;
+            // List is already empty
         } else {
             for (Activity activity : activities) {
                 if (activity.getClass() == RunningActivity.class) {
@@ -134,7 +134,7 @@ public class ActivityList {
     // EFFECTS: returns a list of only the biking activities in the given list
     private void getBikingActivities(List<Activity> consideredActivities) {
         if (activities.isEmpty()) {
-            consideredActivities = null;
+            // List is already empty
         } else {
             for (Activity activity : activities) {
                 if (activity.getClass() == BikingActivity.class) {

@@ -210,10 +210,40 @@ public class ActivityListTest {
     }
 
     @Test
+    void testGetLongestTimeBiking() {
+        assertEquals(testBActivity2, testActivityList.getLongestTime(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetShortestTimeBiking() {
+        assertEquals(testBActivity4, testActivityList.getShortestTime(ActivityList.ActivityType.BIKING));
+    }
+
+    @Test
+    void testGetLongestTimeRunning() {
+        assertEquals(testRActivity4, testActivityList.getLongestTime(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
+    void testGetShortestTimeRunning() {
+        assertEquals(testRActivity2, testActivityList.getShortestTime(ActivityList.ActivityType.RUNNING));
+    }
+
+    @Test
     void testGetListOfTitles() {
         List<String> titles = testActivityList.getListOfTitles();
         assertEquals("Evening ride", titles.get(0));
         assertEquals(8, titles.size());
         assertEquals("Same distance run", titles.get(7));
     }
+
+    @Test
+    void testRemoveActivity() {
+        assertTrue(testActivityList.getListOfTitles().contains("Evening ride"));
+        assertEquals(8, testActivityList.size());
+        testActivityList.removeActivity(testBActivity1);
+        assertFalse(testActivityList.getListOfTitles().contains("Evening ride"));
+        assertEquals(7, testActivityList.size());
+    }
+
 }
