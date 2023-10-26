@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityList {
+public class ActivityList implements Writable {
 
     public enum ActivityType { RUNNING, BIKING, BOTH }
 
@@ -14,6 +18,23 @@ public class ActivityList {
     // EFFECTS: constructs an empty list of activities
     public ActivityList() {
         this.activities = new ArrayList<>();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("activities", activitiesToJson());
+        return json; // stub
+    }
+
+    private JSONArray activitiesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Activity activity : activities) {
+            jsonArray.put(activity.toJson());
+        }
+
+        return jsonArray;
     }
 
     // REQUIRES: an activity type enumeration value

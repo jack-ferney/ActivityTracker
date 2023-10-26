@@ -1,6 +1,6 @@
 package model;
 
-public class BikingDistanceGoal implements Goals {
+public class BikingDistanceGoal implements Goal {
 
     private float distance;
     private boolean completed;

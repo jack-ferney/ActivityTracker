@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 public interface Activity {
 
     // REQUIRES: weight (kg) > 0
@@ -25,4 +27,7 @@ public interface Activity {
     void setTime(float time);
 
     String getTitle();
+
+    JSONObject toJson();
+
 }

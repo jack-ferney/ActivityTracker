@@ -1,6 +1,9 @@
 package model;
 
-public class BikingActivity implements Activity {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class BikingActivity implements Activity, Writable {
 
     private float distance;
     private float time;
@@ -61,5 +64,15 @@ public class BikingActivity implements Activity {
     @Override
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("distance", distance);
+        json.put("time", time);
+        json.put("title", title);
+        json.put("activity type", "biking");
+        return json;
     }
 }

@@ -1,6 +1,6 @@
 package model;
 
-public class RunningTimeGoal implements Goals {
+public class RunningTimeGoal implements Goal {
 
     private float time;
     private boolean completed;

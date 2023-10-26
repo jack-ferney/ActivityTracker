@@ -1,20 +1,29 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class ActivityTracker {
+    private static final String JSON_STORE = "./data/ActivityList.json";
     private ActivityList activities;
     private RunningDistanceGoal runningDGoal;
     private RunningTimeGoal runningTGoal;
     private BikingDistanceGoal bikingDGoal;
     private BikingTimeGoal bikingTGoal;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
     private Scanner input;
 
     // EFFECTS: runs the activity tracker
     public ActivityTracker() {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runActivityTracker();
     }
 
@@ -52,8 +61,42 @@ public class ActivityTracker {
             getActivity();
         } else if (command.equals("g")) {
             goals();
+        } else if (command.equals("f")) {
+            System.out.println("Do you want to (s)ave or (l)oad saved activities? ");
+            String choice = input.next();
+            choice = choice.toLowerCase();
+            if (choice.equals("s")) {
+                saveFiles();
+            } else if (choice.equals("l")) {
+                loadFiles();
+            }
+        } else if (command.equals("v")) {
+            printActivities();
         } else {
             System.out.println("Invalid input mate!");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads the saved activities and replaces any current activities
+    private void loadFiles() {
+        try {
+            activities = jsonReader.read();
+            System.out.println("Loaded saved activities!!!");
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    // EFFECTS: saves the current activities to a file
+    private void saveFiles() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(activities);
+            jsonWriter.close();
+            System.out.println("Activities Saved!!!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
@@ -144,7 +187,20 @@ public class ActivityTracker {
     // MODIFIES: this
     // EFFECTS: gets selected activity so the user can view its details or edits details or delete it from the list
     private void getActivity() {
-        if (activities.getShortestTime(ActivityList.ActivityType.BOTH) == null) {
+        printActivities();
+        System.out.println("\n Choose which activity you wish to access to edit or view details or delete! "
+                + "(By number)");
+        int choice = input.nextInt();
+        if ((choice > activities.size()) || (choice < 0)) {
+            System.out.println("Invalid choice! ");
+        } else {
+            editActivity(choice);
+        }
+    }
+
+    // EFFECTS: prints a list of the users activities and numbers them by order of when they were added
+    private void printActivities() {
+        if (activities.getLongestDistance(ActivityList.ActivityType.BOTH) == null) {
             System.out.println("List is empty. Try adding activities first!");
         } else {
             List<String> titles = activities.getListOfTitles();
@@ -152,14 +208,6 @@ public class ActivityTracker {
             for (String title : titles) {
                 System.out.println(number + ")  " + title);
                 number++;
-            }
-            System.out.println("\n Choose which activity you wish to access to edit or view details or delete! "
-                    + "(By number)");
-            int choice = input.nextInt();
-            if ((choice > titles.size()) || (choice < 0)) {
-                System.out.println("Invalid choice! ");
-            } else {
-                editActivity(choice);
             }
         }
     }
@@ -367,9 +415,11 @@ public class ActivityTracker {
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tA -> Add Activity to List");
+        System.out.println("\tV -> View List of Activities");
         System.out.println("\tS -> Search List");
         System.out.println("\tL -> Get Activity in List");
-        System.out.println("\tG -> View and edit goals");
+        System.out.println("\tG -> View, Edit, or Complete Goals");
+        System.out.println("\tF -> Save or Load your Files");
         System.out.println("\tQ -> Quit");
     }
 }

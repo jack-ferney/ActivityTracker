@@ -1,6 +1,6 @@
 package model;
 
-public interface Goals {
+public interface Goal {
     boolean getGoalStatus();
 
     float getGoalValue();

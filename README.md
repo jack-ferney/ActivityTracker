@@ -21,3 +21,5 @@ use to active and goal oriented athletes like myself or anyone who wishes to tra
 - I want to be able to, search my list of activities and find the longest distance/time or shortest distance/time considering only biking activities
 - I want to be able to, search my list of activities and find the longest distance/time or shortest distance/time considering only running activities
 - I want to be able to delete an activity from my list
+- I want to be able to save my list of activities to a file
+- I want to be able to load a saved list of activities from a file
