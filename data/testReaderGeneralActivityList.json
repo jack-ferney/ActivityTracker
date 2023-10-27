@@ -1,16 +1,16 @@
 {
-    "activities": [
-        {
-            "distance": 100;
-            "time": 120;
-            "title": "test bike ride";
-            "activity type": "biking"
-        },
-        {
-          "distance": 20;
-          "time": 100;
-          "title": "test run";
-          "activity type": "running"
-        }
-      ]
+  "activities": [
+    {
+      "distance": 100,
+      "time": 120,
+      "title": "test bike ride",
+      "activity type": "biking"
+    },
+    {
+      "activity type": "running",
+      "distance": 20,
+      "time": 100,
+      "title": "test run"
+    }
+  ]
 }
