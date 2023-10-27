@@ -59,7 +59,8 @@ public class JsonReader {
         if (activityType.equals("biking")) {
             Activity activity = new BikingActivity(distance, time, title);
             al.addActivity(activity);
-        } else if (activityType.equals("running")) {
+        }
+        if (activityType.equals("running")) {
             Activity activity = new RunningActivity(distance, time, title);
             al.addActivity(activity);
         }

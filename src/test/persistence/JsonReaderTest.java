@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonReaderTest extends JsonTest{
 
@@ -41,11 +40,12 @@ public class JsonReaderTest extends JsonTest{
             ActivityList al = reader.read();
             assertEquals(2, al.size());
             checkActivity(100, 120, "test bike ride", al.get(0));
-            assertEquals(BikingActivity.class, al.get(0).getClass());
+            assertTrue(BikingActivity.class == al.get(0).getClass());
             checkActivity(20, 100, "test run", al.get(1));
-            assertEquals(RunningActivity.class, al.get(1).getClass());
+            assertTrue(RunningActivity.class == al.get(1).getClass());
         } catch (IOException e) {
             fail("shouldn't have caught anything");
         }
     }
+
 }
