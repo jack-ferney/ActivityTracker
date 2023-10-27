@@ -1,5 +1,6 @@
 package model;
 
+// represents a running time goal with a goal value and completion status
 public class RunningTimeGoal implements Goal {
 
     private float time;

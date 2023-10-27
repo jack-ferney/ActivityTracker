@@ -1,5 +1,6 @@
 package model;
 
+// represents a biking distance goal with a goal value and completion status
 public class BikingDistanceGoal implements Goal {
 
     private float distance;

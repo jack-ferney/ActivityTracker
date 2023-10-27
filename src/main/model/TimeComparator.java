@@ -1,5 +1,6 @@
 package model;
 
+// represents a comparator that compares the time value of two given activities
 public class TimeComparator implements Comparator {
 
     @Override

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+// Represents an instance of an activity tracker with an activity list and goals
 public class ActivityTracker {
     private static final String JSON_STORE = "./data/ActivityList.json";
     private ActivityList activities;

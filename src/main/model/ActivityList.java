@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+
+// Represents a list of either biking activities and running activities
 import java.util.List;
 
 public class ActivityList implements Writable {
@@ -24,7 +26,7 @@ public class ActivityList implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("activities", activitiesToJson());
-        return json; // stub
+        return json;
     }
 
     private JSONArray activitiesToJson() {

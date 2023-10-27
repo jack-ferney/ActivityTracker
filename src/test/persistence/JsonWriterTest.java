@@ -2,6 +2,7 @@ package persistence;
 
 import model.ActivityList;
 import model.BikingActivity;
+import model.RunningActivity;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class JsonWriterTest extends JsonTest {
         try {
             ActivityList al = new ActivityList();
             al.addActivity(new BikingActivity(100, 120, "test bike ride"));
-            al.addActivity(new BikingActivity(20, 100, "test run"));
+            al.addActivity(new RunningActivity(20, 100, "test run"));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralActivityList.json");
             writer.open();
             writer.write(al);

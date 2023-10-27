@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
+// represents a JsonReader that reads data files
 public class JsonReader {
     private String source;
 

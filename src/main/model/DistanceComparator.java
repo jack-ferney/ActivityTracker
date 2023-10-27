@@ -1,5 +1,6 @@
 package model;
 
+// represents a comparator that compares the distance value of two given activities
 public class DistanceComparator implements Comparator {
 
     @Override

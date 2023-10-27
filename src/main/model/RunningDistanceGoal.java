@@ -1,5 +1,6 @@
 package model;
 
+// represents a running distance goal with a goal value and completion status
 public class RunningDistanceGoal implements Goal {
 
     private float distance;

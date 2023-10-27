@@ -3,6 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+// represents a running activity with a distance, time, title, pace, and average speed
 public class RunningActivity implements Activity, Writable {
 
     private float distance;

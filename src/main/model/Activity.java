@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONObject;
 
+// Represents an activity with a distance, time, title, pace, and average speed
 public interface Activity {
 
     // REQUIRES: weight (kg) > 0
