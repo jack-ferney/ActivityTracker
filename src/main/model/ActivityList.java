@@ -4,10 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.List;
 import java.util.ArrayList;
 
 // Represents a list of either biking activities and running activities
-import java.util.List;
 
 public class ActivityList implements Writable {
 
@@ -29,6 +29,8 @@ public class ActivityList implements Writable {
         return json;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a JSON array and adds each activity in current activity list to it
     private JSONArray activitiesToJson() {
         JSONArray jsonArray = new JSONArray();
 

@@ -21,12 +21,14 @@ public class JsonReader {
         this.source = source;
     }
 
+    // EFFECTS: reads the saved JSON file and returns the saved activities list
     public ActivityList read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseActivityList(jsonObject);
     }
 
+    // EFFECTS: reads a given file
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -37,12 +39,15 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+    // EFFECTS: returns a parsed activity list from a given JSON object
     private ActivityList parseActivityList(JSONObject jsonObject) {
         ActivityList al = new ActivityList();
         addActivities(al, jsonObject);
         return al;
     }
 
+    // MODIFIES: al (activity list from JSON file)
+    // EFFECTS: adds all saved activities to a given activity list
     private void addActivities(ActivityList al, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("activities");
         for (Object json : jsonArray) {
@@ -51,6 +56,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: al (activity list from JSON file)
+    // EFFECTS: creates an activity from saved file and adds it to the activity list
     private void addActivity(ActivityList al, JSONObject nextActivity) {
         float distance = nextActivity.getFloat("distance");
         float time = nextActivity.getFloat("time");
