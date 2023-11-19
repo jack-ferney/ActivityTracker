@@ -11,6 +11,15 @@ import java.util.ArrayList;
 
 public class ActivityList implements Writable {
 
+    public Activity getActivityGUI(String chosenActivity) {
+        for (Activity activity : activities) {
+            if (activity.getTitle().toLowerCase().equals(chosenActivity)) {
+                return activity;
+            }
+        }
+        return null;
+    }
+
     public enum ActivityType { RUNNING, BIKING, BOTH }
 
     private List<Activity> activities;
@@ -198,5 +207,25 @@ public class ActivityList implements Writable {
             titles.add(activity.getTitle());
         }
         return titles;
+    }
+
+    public String writeActivitiesForGUI() {
+        String activitiesText = "Activities:\n";
+        if (!activities.isEmpty()) {
+            for (Activity activity : activities) {
+                String activityType = "";
+                if (activity.getClass() == BikingActivity.class) {
+                    activityType = "Biking";
+                } else {
+                    activityType = "Running";
+                }
+                activitiesText += "\n   "
+                        + activity.getTitle() + ": " + "\n        " + "Distance: " + activity.getDistance() + "km   "
+                        + "Time: " + activity.getTime() + "mins" + "   Activity Type: " + activityType;
+            }
+        } else {
+            activitiesText = "You have no recorded activities! Try adding some!";
+        }
+        return activitiesText;
     }
 }

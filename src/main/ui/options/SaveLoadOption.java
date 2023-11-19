@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SaveLoadOption extends Option {
+public class SaveLoadOption extends Option implements ActionListener {
 
     private Shape shapeToLoadSave;
 
@@ -22,24 +22,12 @@ public class SaveLoadOption extends Option {
         button.setBackground(new Color(255, 150, 31));
         button.setPreferredSize(new Dimension(300,875));
         button.setFont(font);
+        button.addActionListener(this);
         addToParent(parent);
     }
 
     @Override
-    protected void addListener() {
-        button.addActionListener(new SaveLoadOptionClickHandler());
-    }
-
-    @Override
-    protected void displayForOption() {
-
-    }
-
-    private class SaveLoadOptionClickHandler implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            tracker.setActiveOption(SaveLoadOption.this);
-        }
+    public void actionPerformed(ActionEvent e) {
+        tracker.saveLoadAction();
     }
 }

@@ -4,7 +4,6 @@ import ui.ActivityTrackerGUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 
 public abstract class Option {
 
@@ -36,11 +35,6 @@ public abstract class Option {
 
     // EFFECTS: creates button to activate tool
     protected abstract void createButton(JComponent parent);
-
-    // EFFECTS: adds a listener for this tool
-    protected abstract void addListener();
-
-    protected abstract void displayForOption();
 
     // MODIFIES: parent
     // EFFECTS:  adds the given button to the parent component

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddOption extends Option {
+public class AddOption extends Option implements ActionListener {
 
     private Shape shapeToAdd;
 
@@ -22,24 +22,12 @@ public class AddOption extends Option {
         button.setBackground(new Color(255, 150, 31));
         button.setPreferredSize(new Dimension(300,875));
         button.setFont(font);
+        button.addActionListener(this);
         addToParent(parent);
     }
 
     @Override
-    protected void addListener() {
-        button.addActionListener(new AddOptionClickHandler());
-    }
-
-    @Override
-    protected void displayForOption() {
-
-    }
-
-    private class AddOptionClickHandler implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            tracker.setActiveOption(AddOption.this);
-        }
+    public void actionPerformed(ActionEvent e) {
+        tracker.addActivity();
     }
 }

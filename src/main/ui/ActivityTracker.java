@@ -11,20 +11,19 @@ import java.util.List;
 import java.util.Scanner;
 
 // Represents an instance of an activity tracker with an activity list and goals using console based interactions
-public class ActivityTracker extends JFrame {
-    protected static final String JSON_STORE = "./data/ActivityList.json";
-    protected ActivityList activities;
-    protected RunningDistanceGoal runningDGoal;
-    protected RunningTimeGoal runningTGoal;
-    protected BikingDistanceGoal bikingDGoal;
-    protected BikingTimeGoal bikingTGoal;
-    protected JsonWriter jsonWriter;
-    protected JsonReader jsonReader;
-    protected Scanner input;
+public class ActivityTracker {
+    private static final String JSON_STORE = "./data/ActivityList.json";
+    private ActivityList activities;
+    private RunningDistanceGoal runningDGoal;
+    private RunningTimeGoal runningTGoal;
+    private BikingDistanceGoal bikingDGoal;
+    private BikingTimeGoal bikingTGoal;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private Scanner input;
 
     // EFFECTS: runs the activity tracker
     public ActivityTracker() {
-        super("Activity Tracker");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }
