@@ -1,5 +1,6 @@
 package model;
 
+// Represents a goal with a specific goal value and boolean completed status
 public interface Goal {
     boolean getGoalStatus();
 

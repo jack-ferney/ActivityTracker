@@ -7,13 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Represents a "Complete Goal" button that allows the user to add an activity using the GUI interface
 public class CompleteGoalOption extends Option implements ActionListener {
 
-    private Shape shapeToGoal;
-
+    // EFFECTS: creates an CompleteGoalOption that gets added to the parent JComponent and creates the button
     public CompleteGoalOption(ActivityTrackerGUI tracker, JComponent parent) {
         super(tracker, parent);
-        shapeToGoal = null;
     }
 
     @Override
@@ -26,7 +25,7 @@ public class CompleteGoalOption extends Option implements ActionListener {
         addToParent(parent);
     }
 
-    @Override
+    // EFFECTS: calls the completeGoals method on the tracker this button is associated with when pressed
     public void actionPerformed(ActionEvent e) {
         tracker.completeGoals();
     }

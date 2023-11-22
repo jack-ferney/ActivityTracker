@@ -7,13 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Represents an "Add Activity" button that allows the user to add an activity using the GUI interface
 public class AddOption extends Option implements ActionListener {
 
-    private Shape shapeToAdd;
-
+    // EFFECTS: creates an AddOption that gets added to the parent JComponent and creates the button
     public AddOption(ActivityTrackerGUI tracker, JComponent parent) {
         super(tracker, parent);
-        shapeToAdd = null;
     }
 
     @Override
@@ -26,7 +25,7 @@ public class AddOption extends Option implements ActionListener {
         addToParent(parent);
     }
 
-    @Override
+    // EFFECTS: calls the addActivity method on the tracker this button is associated with when pressed
     public void actionPerformed(ActionEvent e) {
         tracker.addActivity();
     }

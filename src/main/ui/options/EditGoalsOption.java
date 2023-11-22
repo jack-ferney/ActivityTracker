@@ -7,13 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EditGoalOption extends Option implements ActionListener {
+// Represents an "Edit Goals" button that allows the user to add an activity using the GUI interface
+public class EditGoalsOption extends Option implements ActionListener {
 
-    private Shape shapeToGoal;
-
-    public EditGoalOption(ActivityTrackerGUI tracker, JComponent parent) {
+    // EFFECTS: creates an EditGoalsOption that gets added to the parent JComponent and creates the button
+    public EditGoalsOption(ActivityTrackerGUI tracker, JComponent parent) {
         super(tracker, parent);
-        shapeToGoal = null;
     }
 
     @Override
@@ -26,7 +25,7 @@ public class EditGoalOption extends Option implements ActionListener {
         addToParent(parent);
     }
 
-    @Override
+    // EFFECTS: calls the editGoals method on the tracker this button is associated with when pressed
     public void actionPerformed(ActionEvent e) {
         tracker.editGoals();
     }

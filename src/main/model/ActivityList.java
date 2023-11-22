@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 // Represents a list of either biking activities and running activities
-
 public class ActivityList implements Writable {
 
+    // EFFECTS: returns the activity that has the given title (used for GUI interface)
     public Activity getActivityGUI(String chosenActivity) {
         for (Activity activity : activities) {
             if (activity.getTitle().toLowerCase().equals(chosenActivity)) {
@@ -209,6 +209,7 @@ public class ActivityList implements Writable {
         return titles;
     }
 
+    // EFFECTS: returns this list of activities in a string form that is used for GUI interface of application
     public String writeActivitiesForGUI() {
         String activitiesText = "Activities:\n";
         if (!activities.isEmpty()) {
@@ -216,7 +217,8 @@ public class ActivityList implements Writable {
                 String activityType = "";
                 if (activity.getClass() == BikingActivity.class) {
                     activityType = "Biking";
-                } else {
+                }
+                if (activity.getClass() == RunningActivity.class) {
                     activityType = "Running";
                 }
                 activitiesText += "\n   "

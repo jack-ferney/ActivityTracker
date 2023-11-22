@@ -12,8 +12,7 @@ public class RunningActivity implements Activity, Writable {
     private float averageSpeed;
     private String title;
 
-    // REQUIRES: distance > 0
-    //           time > 0
+    // REQUIRES: distance > 0 and time > 0
     // EFFECTS: Creates a running activity of given distance and time
     public RunningActivity(float distance, float time, String title) {
         this.distance = distance;

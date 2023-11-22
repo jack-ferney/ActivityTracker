@@ -10,15 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ActivityListTest {
 
     private ActivityList testActivityList;
+    private ActivityList testAL;
     private Activity testRActivity1;
     private Activity testRActivity2;
     private Activity testRActivity3;
     private Activity testRActivity4;
+    private Activity testRA;
     private Activity testBActivity1;
     private Activity testBActivity2;
     private Activity testBActivity3;
     private Activity testBActivity4;
     private Activity testBActivity5;
+    private Activity testBA;
     private TimeComparator timeComparator;
     private DistanceComparator distComparator;
 
@@ -28,11 +31,13 @@ public class ActivityListTest {
         testRActivity2 = new RunningActivity(5, 30, "Slow run");
         testRActivity3 = new RunningActivity(4, 30, "Shorter run");
         testRActivity4 = new RunningActivity(4, 45, "Same distance run");
+        testRA = new RunningActivity(1,1, "Test1");
         testBActivity1 = new BikingActivity(6, 45, "Evening ride");
         testBActivity2 = new BikingActivity(20, 50, "Slow ride");
         testBActivity3 = new BikingActivity(30, 50, "Fast ride");
         testBActivity4 = new BikingActivity(30, 40, "Same distance ride");
         testBActivity5 = new BikingActivity(3, 20, "Shortest Ride");
+        testBA = new BikingActivity(1,1,"Test2");
         distComparator = new DistanceComparator();
         timeComparator = new TimeComparator();
         testActivityList = new ActivityList();
@@ -44,6 +49,9 @@ public class ActivityListTest {
         testActivityList.addActivity(testRActivity2);
         testActivityList.addActivity(testRActivity3);
         testActivityList.addActivity(testRActivity4);
+        testAL = new ActivityList();
+        testAL.addActivity(testRA);
+        testAL.addActivity(testBA);
     }
 
     @Test
@@ -244,6 +252,26 @@ public class ActivityListTest {
         testActivityList.removeActivity(testBActivity1);
         assertFalse(testActivityList.getListOfTitles().contains("Evening ride"));
         assertEquals(7, testActivityList.size());
+    }
+
+    @Test
+    void testGetActivityGUI() {
+        assertEquals(testRA, testAL.getActivityGUI("test1"));
+        assertEquals(testBA, testAL.getActivityGUI("test2"));
+        assertNull(testAL.getActivityGUI("hi"));
+    }
+
+    @Test
+    void testWriteActivitiesForGuiNormal() {
+        assertEquals("Activities:\n\n   Test1: \n        Distance: 1.0km   Time: 1.0mins   Activity Type: " +
+                "Running\n   Test2: " + "\n        Distance: 1.0km   Time: 1.0mins   Activity Type: Biking",
+                testAL.writeActivitiesForGUI());
+    }
+
+    @Test
+    void testWriteActivitiesForGuiBlank() {
+        ActivityList blankActivities = new ActivityList();
+        assertEquals("You have no recorded activities! Try adding some!", blankActivities.writeActivitiesForGUI());
     }
 
 }
