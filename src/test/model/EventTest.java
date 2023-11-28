@@ -26,6 +26,6 @@ public class EventTest {
 
     @Test
     public void testToString() {
-        assertEquals("Sensor open at door", e.toString());
+        assertEquals("Sensor open at door", e.getDescription());
     }
 }

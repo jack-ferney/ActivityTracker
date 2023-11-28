@@ -25,6 +25,7 @@ public class EventLogTest {
         e2 = new Event("A2");
         e3 = new Event("A3");
         EventLog el = EventLog.getInstance();
+        el.clear();
         el.logEvent(e1);
         el.logEvent(e2);
         el.logEvent(e3);
@@ -52,5 +53,11 @@ public class EventLogTest {
         assertTrue(itr.hasNext());   // After log is cleared, the clear log event is added
         assertEquals("Event log cleared.", itr.next().getDescription());
         assertFalse(itr.hasNext());
+    }
+
+    @Test
+    public void testPrintEventLog() {
+        EventLog el = EventLog.getInstance();
+        assertEquals("Event Log:\n\nEvent log cleared.\nA1\nA2\nA3", el.printEventLog());
     }
 }

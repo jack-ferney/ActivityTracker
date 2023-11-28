@@ -1,9 +1,5 @@
 package model;
 
-import java.util.Calendar;
-import java.util.Date;
-
-
 /**
  * Represents an alarm system event.
  */
@@ -25,31 +21,6 @@ public class Event {
      * @return  the description of the event
      */
     public String getDescription() {
-        return description;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-
-        if (other.getClass() != this.getClass()) {
-            return false;
-        }
-
-        Event otherEvent = (Event) other;
-
-        return (this.description.equals(otherEvent.description));
-    }
-
-    @Override
-    public int hashCode() {
-        return (HASH_CONSTANT * description.hashCode());
-    }
-
-    @Override
-    public String toString() {
         return description;
     }
 }
