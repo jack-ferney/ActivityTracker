@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.events.EventException;
 import persistence.Writable;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class ActivityList implements Writable {
     // EFFECTS: creates a JSON array and adds each activity in current activity list to it
     private JSONArray activitiesToJson() {
         JSONArray jsonArray = new JSONArray();
+        EventLog.getInstance().logEvent(new Event("Activities were saved!"));
 
         for (Activity activity : activities) {
             jsonArray.put(activity.toJson());
@@ -181,6 +183,7 @@ public class ActivityList implements Writable {
     // MODIFIES: this
     // EFFECTS: adds the given activity to the end of this list
     public void addActivity(Activity activity) {
+        EventLog.getInstance().logEvent(new Event("Activity \"" + activity.getTitle() + "\" was added!"));
         activities.add(activity);
     }
 
@@ -198,6 +201,9 @@ public class ActivityList implements Writable {
     // EFFECTS: removes the given activity from this list
     public void removeActivity(Activity chosenActivity) {
         activities.remove(chosenActivity);
+        EventLog.getInstance().logEvent(new Event("Activity \""
+                + chosenActivity.getTitle()
+                + "\" was removed"));
     }
 
     // EFFECTS: returns a list of the titles of activities in this list

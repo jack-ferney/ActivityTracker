@@ -48,6 +48,8 @@ public class ActivityTracker {
         }
 
         System.out.println("\n Keep Working Out!!!");
+
+        System.out.println(EventLog.getInstance().printEventLog());
     }
 
     // MODIFIES: this

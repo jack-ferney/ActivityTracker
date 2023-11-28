@@ -53,6 +53,7 @@ public class BikingActivity implements Activity, Writable {
         this.distance = distance;
         this.pace = this.time / distance;
         this.averageSpeed = distance / this.time;
+        EventLog.getInstance().logEvent(new Event(this.getTitle() + " was edited!"));
     }
 
     @Override
@@ -60,6 +61,7 @@ public class BikingActivity implements Activity, Writable {
         this.time = time;
         this.pace = time / this.distance;
         this.averageSpeed = this.distance / time;
+        EventLog.getInstance().logEvent(new Event(this.getTitle() + " was edited!"));
     }
 
     @Override

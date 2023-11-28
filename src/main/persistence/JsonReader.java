@@ -1,9 +1,6 @@
 package persistence;
 
-import model.Activity;
-import model.ActivityList;
-import model.BikingActivity;
-import model.RunningActivity;
+import model.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -50,6 +47,7 @@ public class JsonReader {
     // EFFECTS: adds all saved activities to a given activity list
     private void addActivities(ActivityList al, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("activities");
+        EventLog.getInstance().logEvent(new Event("Activities were loaded!"));
         for (Object json : jsonArray) {
             JSONObject nextActivity = (JSONObject) json;
             addActivity(al, nextActivity);

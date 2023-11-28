@@ -26,11 +26,13 @@ public class BikingTimeGoal implements Goal {
     @Override
     public void completeGoal() {
         this.completed = true;
+        EventLog.getInstance().logEvent(new Event("A goal was completed!"));
     }
 
     @Override
     public void editGoal(float newGoal) {
         this.time = newGoal;
         this.completed = false;
+        EventLog.getInstance().logEvent(new Event("A goal was edited!"));
     }
 }

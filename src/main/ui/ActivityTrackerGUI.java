@@ -72,6 +72,12 @@ public class ActivityTrackerGUI extends JFrame {
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         createOptions();
         createActiveArea();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                System.out.println(EventLog.getInstance().printEventLog());
+                System.exit(0);
+            }
+        });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -180,7 +186,6 @@ public class ActivityTrackerGUI extends JFrame {
         if (bikingOrRunning == 0) {
             activities.addActivity(new BikingActivity(distance, time, title));
         } else if (bikingOrRunning == 1) {
-            System.out.println("test");
             activities.addActivity(new RunningActivity(distance, time, title));
         }
         JOptionPane.showMessageDialog(null, goodJobImg);

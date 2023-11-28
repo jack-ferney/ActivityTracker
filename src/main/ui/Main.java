@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("What type of interface do you want to use? (G)raphical or (C)onsol based? \n");
         String choice = input.next();
-        choice.toLowerCase();
+        choice = choice.toLowerCase();
         if (choice.equals("g")) {
             ActivityTrackerGUI liveTracker = new ActivityTrackerGUI();
         } else if (choice.equals("c")) {
