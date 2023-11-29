@@ -2,7 +2,6 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.events.EventException;
 import persistence.Writable;
 
 import java.util.List;
