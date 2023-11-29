@@ -30,3 +30,26 @@ use to active and goal oriented athletes like myself or anyone who wishes to tra
 - Use any of the other buttons to perform another user story/perform another action
 - To find the visual component use the add activity button and add an activity to the list
 - Use the save/load my application using the Save/Load button
+
+# Phase 4: Task 2
+
+## Sample of Events:
+
+- An activity is added
+- A goal is edited
+- 2 goals are completed
+- An activity is edited (time is edited and distance is edited)
+- Activities are saved
+- Program is closed
+
+## Result:
+
+### Event Log:
+
+- Activity "Test activity" was added!
+- A goal was edited!
+- A goal was completed!
+- A goal was completed!
+- Test activity was edited!
+- Test activity was edited!
+- Activities were saved!
